@@ -1,3 +1,5 @@
+import sys
+
 # Задача 1
 print("Вид питомца")
 animal = input()
@@ -21,3 +23,4 @@ a4 = input()
 a5 = input()
 print("\n")
 print(a1, a2, a3, a4, a5, sep=' => ')
+print(sys.stdin.readline())

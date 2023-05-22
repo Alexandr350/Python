@@ -1,3 +1,5 @@
+import sys
+
 # Задача 1
 print("Введите параметры прямоугольника:\nA = ")
 a = float(input())
@@ -18,3 +20,4 @@ th = ((a%10000)-(a%1000))/1000
 dec_th = ((a%100000)-(a%10000))/10000
 result = ((dec ** ed) * hun)/(dec_th - th)
 print(result)
+print(sys.stdin.readline())
