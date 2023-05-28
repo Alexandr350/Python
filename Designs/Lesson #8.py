@@ -1,7 +1,7 @@
 import sys
 
 # Задача 1
-'''
+
 print("Напишите количество повторений")
 N = int(input())
 S = []
@@ -19,7 +19,7 @@ S.reverse()
 for i in S:
     print(i)
 
-'''
+
 # Задача 2
 
 print("Напишите количество повторений 1 ≤ N ≤ 100 000")
@@ -65,7 +65,7 @@ print(*L)
 
 
 # Задача 3
-'''
+
 print("Грузоподъемность лодки:")
 while True:
     m = int(input())
@@ -95,5 +95,5 @@ if weight % 100 != 0:
     print("Необходимо {0} лодки".format(numberOfBoats + 1))
 else:
     print("Необходимо {0} лодки".format(numberOfBoats))
-'''
+
 print(sys.stdin.readline())
