@@ -1,5 +1,5 @@
 import sys
-
+from collections import Counter
 # Задача 1
 
 print("Напишите слово")
@@ -31,11 +31,10 @@ else:
 print("Напишите текст")
 text = input()
 SText = text.split(" ")
-LL = len(SText) - 1
-newText = ''
-while LL >= 0:
-    if SText[LL].isalpha():
-        newText += SText[LL] + " "
-    LL -= 1
-print(newText)
+new_text = ""
+for i in SText:
+    if i != '':
+        new_text += (i + " ")
+
+print(new_text)
 print(sys.stdin.readline())

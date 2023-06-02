@@ -1,5 +1,6 @@
 import sys
-import decimal
+from collections import Counter
+
 # Задача 1
 
 print("Количество повторений")
@@ -18,15 +19,36 @@ print(counter)
 
 # Задача 2
 
-print("Введите число")
-X = decimal.Decimal(int(input()))
-coun = decimal.Decimal(0)
-index = decimal.Decimal(1)
-while index != X:
-    if X % index == 0:
-        coun += decimal.Decimal(1)
-    index += decimal.Decimal(1)
-print("Количество натуральных делителей = {0}".format(coun))
+def change(t):
+    tmp_change = t
+    return tmp_change
+
+
+X = int(input("Введите число: "))
+div = []
+i = 2
+while i <= 2000000000:
+    if X % i == 0:
+        X = int(change(X/i))
+        div.append(i)
+        i = int(change(2))
+    if X % i != 0:
+        i += 1
+    if X == 1:
+        break
+
+count = Counter(div)
+dict(count)
+
+tmp = []
+for i in count.values():
+    i_tmp = i + 1
+    tmp.append(i_tmp)
+
+result = 1
+for i in tmp:
+    result *= i
+print("Количество натуральных делителей = {0}".format(result))
 
 
 # Задача 3
@@ -44,5 +66,6 @@ else:
             st += (str(B) + " ")
         B -= 1
     print(st)
+
 
 print(sys.stdin.readline())

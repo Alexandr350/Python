@@ -2,18 +2,25 @@ import sys
 
 # Задача 1
 
-print("Напишите количество повторений")
-N = int(input())
+N = 0
+while True:
+    N = int(input("Напишите количество повторений 1 ≤ N ≤ 10000: "))
+    if 1 <= N <= 10000:
+        break
+    else:
+        print("Необходимо ввести число в диапазоне 1 ≤ N ≤ 10000 ")
 S = []
-print("Напишите числа")
+
+
 for i in range(N):
     while True:
-        a = int(input())
-        if 1 <= a <= 10000:
+        a = int(input("Напишите числа: "))
+        if 1 <= a <= 10e5:
             S.append(a)
             break
         else:
-            print("Напишите число 1 <= N <= 10000")
+            print("Напишите число по модулю не превышающее 10e5")
+
 
 S.reverse()
 for i in S:
@@ -66,34 +73,66 @@ print(*L)
 
 # Задача 3
 
+massaOneBoat = 0
 print("Грузоподъемность лодки:")
 while True:
-    m = int(input())
-    if 1 <= m <= 100000:
+    massaOneBoat = int(input())
+    if 1 <= massaOneBoat <= 10e6:
         break
     else:
         print("Напишите число 1 ≤ m ≤ 10e6")
 
 print("Число рыбаков:")
 while True:
-    n = int(input())
-    if 1 <= n <= 100:
+    fisherman = int(input())
+    if 1 <= fisherman <= 100:
         break
     else:
         print("Напишите число 1 ≤ n ≤ 100")
 
-fisherman = 1
-weight = 0
-for j in range(n):
-    print("Вес рыбака №{0}:".format(fisherman))
-    weight += int(input())
-    fisherman += 1
 
-numberOfBoats = 0
-if weight % 100 != 0:
-    numberOfBoats += int(weight/100)
-    print("Необходимо {0} лодки".format(numberOfBoats + 1))
-else:
-    print("Необходимо {0} лодки".format(numberOfBoats))
+weightAllFisherman = []
+Ai = 0
+i = 1
+while i < fisherman + 1:
+    Ai = int(input("Вес рыбака №{0}: ".format(i)))
+    if 1 <= Ai <= massaOneBoat:
+        weightAllFisherman.append(Ai)
+    else:
+        print("Вес рыбака должен быть 1 ≤ Ai ≤ m ")
+        i -= 1
+    i += 1
+
+boats = []
+z = 1
+weightAllFisherman.sort()
+weightAllFisherman.reverse()
+
+while True:
+    while z < len(weightAllFisherman):
+        if len(weightAllFisherman) == 1:
+            boats.append(weightAllFisherman[0])
+            weightAllFisherman.pop(0)
+            break
+        weightTwoFisherman = weightAllFisherman[0] + weightAllFisherman[z]
+        if weightTwoFisherman < massaOneBoat:
+            boats.append(weightTwoFisherman)
+            weightAllFisherman.pop(z)
+            weightAllFisherman.pop(0)
+            break
+        elif z == len(weightAllFisherman) - 1:
+            boats.append(weightAllFisherman[0])
+            weightAllFisherman.pop(0)
+            break
+        z += 1
+
+    if len(weightAllFisherman) == 0:
+        break
+
+    if len(weightAllFisherman) == 1:
+        z = 0
+    else:
+        z = 1
+print("\nНеобходимо лодок: {0}".format(len(boats)))
 
 print(sys.stdin.readline())

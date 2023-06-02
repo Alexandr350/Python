@@ -1,7 +1,7 @@
 import sys
 
 # Задача 1
-
+lis = []
 print("Количество чисел:")
 while True:
     N = int(input())
@@ -10,31 +10,40 @@ while True:
     else:
         print("Напишите число 1 ≤ N ≤ 100000")
 
-while True:
-    lis = list(map(int, input("Введите список из {0} чисел до 2*10e9 по модулю, разделенных пробелом: ".format(N)).split()))
-    if len(lis) > N:
-        print("Чисел должно быть {0}".format(N))
+lis = list(map(int, input("Введите список из {0} чисел до 2*10e9 по модулю, разделенных пробелом: ".format(N)).split()))
+
+while N != len(lis):
+    if N < len(lis):
+        difference = len(lis) - N
+        delete = list(map(int, input("Чисел больше чем нужно на {0}, удалите числа:  ".format(difference)).split()))
+        if len(delete) <= difference:
+            for x in delete:
+                if x in lis:
+                    lis.remove(x)
+                else:
+                    print("Такого числа нет в списке.")
+                    continue
+    if N > len(lis):
+        difference = N - len(lis)
+        app = list(map(int, input("Чисел меньше чем нужно на {0}, допишите числа:  ".format(difference)).split()))
+        if len(app) < difference:
+            print("Количество чисел которое нужно добавить {0}".format(difference))
+            lis = lis + app
+            continue
+        elif len(app) > difference:
+            print("Чисел должно быть: {0} ".format(difference))
+            continue
+        lis = lis + app
+i = 0
+while i < len(lis)-1:
+    if 0 <= lis[i] <= (2*10e9):
+        i += 1
+        continue
     else:
-        break
-
-LS = len(lis)
-
-index = 0
-while True:
-    if lis[index] < 0 or lis[index] > (2*10e9):
-        print("Замените число {0}, число должно быть до 2*10e9 по модулю".format(lis[index]))
-        i2 = int(input("Введите корректное число: "))
-        if 0 <= i2 <= (2*10e9):
-            lis.pop(index)
-            lis.insert(index, i2)
-    else:
-        index += 1
-        if index == N:
-            break
-
-LS = len(lis)
-MN = set(lis)
-print("Различных чисел: {0}".format(len(MN)))
+        lis.append(int(input("Замените число {0} на число из диапазона до 2*10e9 по модулю ".format(lis[i]))))
+        lis.pop(i)
+        continue
+print("Различных чисел: {0}".format(len(set(lis))))
 
 # Задача 2
 
@@ -64,17 +73,12 @@ print("Чисел содержится одновременно как в пер
 
 lst = list(map(int, input("Введите список из чисел через пробел: ").split()))
 
-
-YES = []
-for j in range(len(lst)):
-    for i in range(j + 1, len(lst)):
-        if lst[i] == lst[j]:
-            print("YES = {0}".format(lst[j]))
-            YES.append(lst[j])
-
-mLst = list(set(lst))
-NO = list(set(YES) ^ set(mLst))
-for k in NO:
-    print("NO = {0}".format(k))
-
+lst.sort()
+j = 1
+while j < len(lst):
+    if lst[j-1] == lst[j]:
+        print("YES = {0}".format(lst[j]))
+    else:
+        print("NO = {0}".format(lst[j]))
+    j += 1
 print(sys.stdin.readline())
