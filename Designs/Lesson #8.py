@@ -15,7 +15,7 @@ S = []
 for i in range(N):
     while True:
         a = int(input("Напишите числа: "))
-        if 0 <= a <= 10e5:
+        if abs(a) <= 10e5:
             S.append(a)
             break
         else:

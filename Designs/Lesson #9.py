@@ -1,6 +1,7 @@
 import sys
 
 # Задача 1
+
 lis = []
 print("Количество чисел:")
 while True:
@@ -10,7 +11,8 @@ while True:
     else:
         print("Напишите число 1 ≤ N ≤ 100000")
 
-lis = list(map(int, input("Введите список из {0} чисел до 2*10e9 по модулю, разделенных пробелом: ".format(N)).split()))
+lis = list(map(abs, map(int, input("Введите список из {0} чисел до 2*10e9 по модулю, разделенных пробелом: ".format(N))
+                        .split())))
 
 while N != len(lis):
     if N < len(lis):
@@ -36,7 +38,7 @@ while N != len(lis):
         lis = lis + app
 i = 0
 while i < len(lis)-1:
-    if 0 <= lis[i] <= (2*10e9):
+    if lis[i] <= (2*10e9):
         i += 1
         continue
     else:
@@ -74,9 +76,9 @@ print("Чисел содержится одновременно как в пер
 lst = list(map(int, input("Введите список из чисел через пробел: ").split()))
 
 lst.sort()
-j = 1
+j = 0
 while j < len(lst):
-    if lst[j-1] == lst[j]:
+    if lst[j - 1] == lst[j] and j > 0:
         print("YES = {0}".format(lst[j]))
     else:
         print("NO = {0}".format(lst[j]))
