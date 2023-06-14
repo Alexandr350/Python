@@ -15,7 +15,7 @@ S = []
 for i in range(N):
     while True:
         a = int(input("Напишите числа: "))
-        if 1 <= a <= 10e5:
+        if 0 <= a <= 10e5:
             S.append(a)
             break
         else:
@@ -115,7 +115,7 @@ while True:
             weightAllFisherman.pop(0)
             break
         weightTwoFisherman = weightAllFisherman[0] + weightAllFisherman[z]
-        if weightTwoFisherman < massaOneBoat:
+        if weightTwoFisherman <= massaOneBoat:
             boats.append(weightTwoFisherman)
             weightAllFisherman.pop(z)
             weightAllFisherman.pop(0)
@@ -135,4 +135,4 @@ while True:
         z = 1
 print("\nНеобходимо лодок: {0}".format(len(boats)))
 
-print(sys.stdin.readline())
+
