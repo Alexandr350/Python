@@ -77,12 +77,14 @@ print("Чисел содержится одновременно как в пер
 
 lst = list(map(int, input("Введите список из чисел через пробел: ").split()))
 
-lst.sort()
-j = 0
-while j < len(lst):
-    if lst[j - 1] == lst[j] and j > 0:
-        print("YES = {0}".format(lst[j]))
+mn = set()
+i = 0
+for j in lst:
+    if j in mn:
+        print("YES = {0}".format(lst[i]))
     else:
-        print("NO = {0}".format(lst[j]))
-    j += 1
+        print("NO = {0}".format(lst[i]))
+        mn.add(j)
+    i += 1
+
 print(sys.stdin.readline())
