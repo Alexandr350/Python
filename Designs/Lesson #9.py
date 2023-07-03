@@ -38,6 +38,8 @@ while N != len(lis):
         lis = lis + app
 i = 0
 while i < len(lis)-1:
+    if lis[i] < 0:
+        lis[i] = abs(lis[i])
     if lis[i] <= (2*10e9):
         i += 1
         continue

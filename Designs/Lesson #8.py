@@ -14,9 +14,9 @@ S = []
 
 for i in range(N):
     while True:
-        a = int(input("Напишите числа: "))
-        if abs(a) <= 10e5:
-            S.append(a)
+        a = abs(int(input("Напишите числа: ")))
+        if a <= 10e5:
+            S.append(abs(a))
             break
         else:
             print("Напишите число по модулю не превышающее 10e5")
