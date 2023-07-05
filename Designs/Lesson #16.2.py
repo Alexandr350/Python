@@ -17,27 +17,31 @@ class Turtle:
     def go_right(self, S):
         self.X -= S
 
-    @staticmethod
-    def evolve():
-        return 1
+    def evolve(self):
+        self.S += 1
 
     def degrade(self):
         if self.S <= 0:
-            print("Конец поля")
+            print("Ошибка. Шаг <= 0")
         else:
             self.S -= 1
 
-    def count_moves(self, x2, y2):
+    def count_moves(self, x2, y2, S):
         step = 0
         step += abs(self.X - x2)
         step += abs(self.Y - y2)
-        print(step)
+        if S == 0:
+            print('Черепашка стоит на месте')
+        else:
+            step_result = step / S
+            print("Количество шагов до цели %.1f" % step_result)
 
 
 T1 = Turtle()
-T1.go_up(4)
-T1.go_left(6)
-print(T1.Y, T1.X)
-T1.go_left(T1.evolve())
-print(T1.Y, T1.X)
-T1.count_moves(2, 5)
+T1.evolve()
+T1.go_up(T1.S)
+T1.go_left(T1.S)
+T1.go_left(T1.S)
+print("Местоположение черепашки ({0}:{1}) ".format(T1.X, T1.Y))
+print("Цель ({0}:{1}), Шаг - {2}".format(6, 5, T1.S))
+T1.count_moves(6, 5, T1.S)
