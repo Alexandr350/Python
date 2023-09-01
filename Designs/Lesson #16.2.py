@@ -32,16 +32,20 @@ class Turtle:
         step += abs(self.Y - y2)
         if S == 0:
             print('Черепашка стоит на месте')
+        elif step % S == 0:
+            step_result = int(step / S)
+            print("Количество шагов до цели {0}".format(step_result))
         else:
-            step_result = step / S
-            print("Количество шагов до цели %.1f" % step_result)
+            print('Цель недостижима из данной точки')
 
 
 T1 = Turtle()
+T1.evolve()
 T1.evolve()
 T1.go_up(T1.S)
 T1.go_left(T1.S)
 T1.go_left(T1.S)
 print("Местоположение черепашки ({0}:{1}) ".format(T1.X, T1.Y))
 print("Цель ({0}:{1}), Шаг - {2}".format(6, 5, T1.S))
+T1.count_moves(6, 6, T1.S)
 T1.count_moves(6, 5, T1.S)
