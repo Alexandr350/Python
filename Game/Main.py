@@ -1,6 +1,7 @@
 import time 
 import os
 import json
+import pickle
 from pynput import keyboard
 from time import monotonic
 from Base import Base
@@ -16,10 +17,9 @@ from random import randint as rand
 
 class Main():
 
-
     def __init__(self):
         Base()
-       
+        
         self.fire = monotonic()
         self.time_forest = monotonic()
         self.time_cloud = monotonic()
@@ -36,12 +36,11 @@ class Main():
 
     def run_game(self):
         Base.inst.height , Base.inst.width = self.input()
-
         River()
         River()
         River()
-        shop = Shop()
-        hos = Hospital()
+        Shop()
+        Hospital()
         helic = Helicopter()
         forest = Forest()
 
@@ -75,6 +74,11 @@ class Main():
 
                     with open("save game.json", "w") as sg:
                         json.dump(data, sg)
+                    
+                    with open("save_cloud.pickle", "wb") as sc:
+                        for cl in self.clouds:
+                            pickle.dump(cl, sc)
+
                 if _str == 'x':
                     with open("save game.json", "r") as sg:
                         data = json.load(sg)
@@ -82,6 +86,9 @@ class Main():
                         Cloud().download_game(data["Cloud"])
                         Base.inst.download_game(data["Base"])
                         self.download_game(data["Main"])
+
+                    with open("save_cloud.pickle", "r") as sc:
+                        self.clouds = pickle.load(sc)
             except :
                 print("")
            
@@ -104,7 +111,7 @@ class Main():
             
             print("")
             os.system('cls')
-            print(" Магазин ", shop.image, "\n", "Госпиталь ", hos.image , "\n", "Действие - f" , '\n', "Сохраниние/загрузка - z/x ",  "\n", "Управление -w,a,s,d")
+            print(" Магазин ", Base.inst.image_shop, "\n", "Госпиталь ", Base.inst.image_hospital , "\n", "Действие - f" , '\n', "Сохраниние/загрузка - z/x ",  "\n", "Управление -w,a,s,d")
             print()
             print("🧡 " , helic.health,'/', helic.health_max, " 🧯 " , helic.tank,"/", helic.tank_max, " 🏆 ", helic.bonus, sep="")
             
@@ -182,7 +189,6 @@ class Main():
 
 
     def save_game(self):
-
         data ={
             "TICK": self.TICK,
             "fire_forest": self.fire_forest,
@@ -192,10 +198,10 @@ class Main():
     
 
     def download_game(self, data):
-
         self.TICK = data["TICK"]
         self.fire_forest = data["fire_forest"]
         self.RIP_forests = data["RIP_forests"]
+
 
 
     def input(self):

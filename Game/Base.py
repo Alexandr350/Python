@@ -1,6 +1,7 @@
 from random import randint as rand
 
 
+
 class Base():
 
     inst = None
@@ -54,8 +55,8 @@ class Base():
     def gen_obj(self, image):
         Y, X = self.rand_place((self.height - 1), (self.width - 1), 0)
 
-        if image == "🌊":
-            Yr, Xr = self.rand_place((self.height // 2), (self.width // 2), 5)
+        if image == self.image_river:
+            Yr, Xr = self.rand_place((self.height), (self.width ), 5)
             for _ in range(self.height * 2):
                 self.map_game[Yr][Xr] = image 
                 i = rand(1, 4)
