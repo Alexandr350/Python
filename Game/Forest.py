@@ -32,7 +32,6 @@ class Forest():
     def print_fire(self, Y, X):
         if Base.inst.map_game[Y][X] == self.image_forest:
             Base.inst.map_game[Y][X] = self.image_fire
-            
             return Y, X
         else:
             return 0 
@@ -70,10 +69,12 @@ class Forest():
     
     def negative_fire(self, fire, RIP_forest):
         Y, X = fire[rand(0,len(fire) - 1)]
-        RIP_forest.append([Y, X])
+        RIP_forest.append((Y, X))
         Base.inst.map_game[Y][X] = self.image_stump
         self.spreading_fire(Y, X, fire)
-        fire.remove((Y,X))
+        if (Y,X) is fire:
+            fire.remove((Y,X))
+
 
     def regeneration_map(self, RIP_forest):
         if len(RIP_forest) > 0:

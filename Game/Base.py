@@ -73,18 +73,23 @@ class Base():
             self.map_game[Y][X] = image 
         else:
             self.gen_obj(image)
+            
         
 
 
     def save_game(self):
 
         data = {
-            "map_game": self.map_game
+            "map_game": self.map_game,
+            "height": self.height,
+            "width": self.width
         }
         return data
     
 
     def download_game(self, data):
         self.map_game = data["map_game"] or self.gen_map()
+        self.width = data["width"] or 20
+        self.height = data["height"] or 20
 
 

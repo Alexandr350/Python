@@ -176,7 +176,7 @@ class Main():
             print("")
             print("Tick =", self.TICK, end="")
             print("")
-            time.sleep(0)
+            
             self.TICK += 1
             time.sleep(Base.inst.tick)
 
